@@ -1,15 +1,18 @@
 'use strict';
 
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
+  mode:'development',
   context: path.resolve(__dirname),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: 'pathOrUrlWhenProductionBuild'
   },
+  watch: true,
   module: {
     rules: [
       {
@@ -17,7 +20,10 @@ module.exports = {
         test: /\.js$/
       },
       {
-        use: ['style-loader','css-loader'],
+        use: ExtractTextPlugin.extract({
+          use: "css-loader",
+          fallback:"style-loader",
+        }),
         test: /\.css$/
       }
     ]
@@ -26,5 +32,7 @@ module.exports = {
   },
   devtool: 'source-map',
   plugins: [
+    //create new instance of this plugin to spitting the css to single file
+    new ExtractTextPlugin('style.css') 
   ]
 };
