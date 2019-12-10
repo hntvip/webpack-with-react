@@ -1,0 +1,23 @@
+
+{
+    "products": [
+        {   
+            "id": 1, 
+            "name": "json-server1",
+            "price": 200,
+            "status":true
+        },
+        {   
+            "id":2, 
+            "name": "json-server2",
+            "price": 100,
+            "status":true
+        },
+        {   
+            "id": 3, 
+            "name": "json-server3",
+            "price": 200,
+            "status":true
+        }
+    ]
+  }

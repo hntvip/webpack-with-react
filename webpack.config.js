@@ -1,38 +1,85 @@
 'use strict';
 
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-
+const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+const VENDOR_LIBS = [
+  'axios',
+  'jquery',
+  'bootstrap3',
+  'react',
+  'react-dom',
+  'react-redux',
+  'react-router-dom',
+  'redux',
+  'redux-thunk'
+]
 module.exports = {
   entry: './src/index.js',
   mode:'development',
   context: path.resolve(__dirname),
+  entry: {
+    bundle: './src/index.js',
+    vendor: VENDOR_LIBS
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].js',
     publicPath: 'pathOrUrlWhenProductionBuild'
   },
-  watch: true,
   module: {
     rules: [
       {
+        test: /\.js$/,
         use: 'babel-loader',
-        test: /\.js$/
+        exclude: /node_modules/
       },
       {
-        use: ExtractTextPlugin.extract({
-          use: "css-loader",
-          fallback:"style-loader",
-        }),
-        test: /\.css$/
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader,'css-loader']
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/'
+            }
+          }
+        ]
       }
     ]
   },
   resolve: {
   },
   devtool: 'source-map',
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: false,
+          chunks: 'all'
+        }
+      }
+    }
+  },
   plugins: [
-    //create new instance of this plugin to spitting the css to single file
-    new ExtractTextPlugin('style.css') 
+    new CleanWebpackPlugin(), // clean dist folder first
+    new MiniCssExtractPlugin({
+      filename: '[name].css', //output
+      chunkFilename: '[id].css', //output
+    }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    })
   ]
 };
