@@ -17,11 +17,11 @@
     
    **2.2 Set up config for webpack - babel:**
     
-    npm install --save-dev @babel/core babel-loader @babel/preset-env @babel/preset-react css-loader style-loader extract-text-webpack-plugin@next 
+    npm install --save-dev @babel/core babel-loader @babel/preset-env @babel/preset-react css-loader style-loader file-loader mini-css-extract-plugin
     
    **2.3 Set up the devDependencies frequely for react-app**
     
-    npm install axios react-redux react-router-dom redux redux-thunk --save-dev
+    npm install axios react-redux react-router-dom redux redux-thunk 
     
 
 ##4. Config .babelrc
@@ -39,4 +39,6 @@
 
     npm install bootstrap jquery font-awesome
 
-##6: Tobe continued
+#2: What's are meaning of our plugin or lib we use in this project:
+- mini-css-extract-plugin : extract / splited styles code into css file.
+
