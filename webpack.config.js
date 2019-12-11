@@ -4,7 +4,8 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VENDOR_LIBS = [
   'axios',
   'jquery',
@@ -16,9 +17,13 @@ const VENDOR_LIBS = [
   'redux',
   'redux-thunk'
 ]
+const devServer = {
+  
+  contentBase: '/'
+};
 module.exports = {
-  entry: './src/index.js',
   mode:'development',
+  // devtool: 'source-map',
   context: path.resolve(__dirname),
   entry: {
     bundle: './src/index.js',
@@ -56,13 +61,12 @@ module.exports = {
   },
   resolve: {
   },
-  devtool: 'source-map',
   optimization: {
     splitChunks: {
       cacheGroups: {
-        vendor: {
+        common: {
           test: /[\\/]node_modules[\\/]/,
-          name: false,
+          // name: true,
           chunks: 'all'
         }
       }
@@ -79,7 +83,12 @@ module.exports = {
       jQuery: 'jquery'
     }),
     new HtmlWebpackPlugin({
-      template: './src/index.html'
-    })
+      template: './src/template.html'
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'disable', // server
+      generateStatsFile: true,
+      statsOptions: { source: false }
+    }) // analyzer after building
   ]
 };

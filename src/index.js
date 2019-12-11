@@ -9,7 +9,6 @@ import 'bootstrap3/dist/css/bootstrap.min.css';
 import 'bootstrap3/dist/js/bootstrap.min.js';
 const store = createStore(
     appReducers,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
     applyMiddleware(thunk)
 );
 
