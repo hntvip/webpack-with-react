@@ -2,9 +2,9 @@
 
 const path = require('path');
 const webpack = require('webpack');
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VENDOR_LIBS = [
   'axios',
@@ -17,21 +17,14 @@ const VENDOR_LIBS = [
   'redux',
   'redux-thunk'
 ]
-const devServer = {
-  
-  contentBase: '/'
-};
 module.exports = {
-  mode:'development',
-  // devtool: 'source-map',
-  context: path.resolve(__dirname),
   entry: {
     bundle: './src/index.js',
     vendor: VENDOR_LIBS
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
+    filename: '[name].js', //[contenthash]: make hash random numbers
     publicPath: 'pathOrUrlWhenProductionBuild'
   },
   module: {
@@ -43,7 +36,10 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader,'css-loader']
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader'
+        ]
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
@@ -73,22 +69,18 @@ module.exports = {
     }
   },
   plugins: [
-    new CleanWebpackPlugin(), // clean dist folder first
-    new MiniCssExtractPlugin({
-      filename: '[name].css', //output
-      chunkFilename: '[id].css', //output
+    new CleanWebpackPlugin(), // clean /dist first
+    new HtmlWebpackPlugin({
+      title: 'Production',
+      template: './src/template.html'
     }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
     }),
-    new HtmlWebpackPlugin({
-      template: './src/template.html'
+    new MiniCssExtractPlugin({
+      filename: '[name].css', //output
+      chunkFilename: '[id].css', //output
     }),
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'disable', // server
-      generateStatsFile: true,
-      statsOptions: { source: false }
-    }) // analyzer after building
   ]
 };

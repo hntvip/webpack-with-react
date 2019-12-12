@@ -9,7 +9,7 @@ Search the error in CLI, browser to research in google will help you.
 * index.html
 * package.json
 * .babelrc
-* webpack.config.js (use plugin to generate initial configation code in visual Studio, eg : webpack plugin)
+* create ether `webpack.config.js` or `webpack-merge` config to dive into 2 modes:  `production` or `development` 
 
 ## 2 . Install dependencies:
 
@@ -19,17 +19,23 @@ Search the error in CLI, browser to research in google will help you.
     
 ## 3 . Install Devdependencies:  
 
-   **2.1 webpack/webpack-cli for global:** 
+   **3.1 webpack/webpack-cli for global:** 
     
     npm install -g webpack webpack-cli 
     
-   **2.2 Set up config for webpack - babel:**
+   **3.2 Set up config for webpack - babel:**
     
-    npm install --save-dev @babel/core babel-loader @babel/preset-env @babel/preset-react css-loader style-loader file-loader mini-css-extract-plugin clean-webpack-plugin    
+    npm install --save-dev @babel/core babel-loader @babel/preset-env @babel/preset-react css-loader style-loader file-loader mini-css-extract-plugin clean-webpack-plugin 
+
+   **3.3 install below step if you want to saparate/dive 2 mode `production` or `development`:** 
+    
+    npm install --save-dev webpack-merge
+
 
 ## 4 Config .babelrc
 `preset-env`: reset ES6 to ES5
-`@babel/react`: reset react to ES5
+`@babel/react`: reset react jxs to js
+
 ``` 
 {
     "presets": [
@@ -46,14 +52,16 @@ Search the error in CLI, browser to research in google will help you.
 
 # III: What's are meaning of our plugin or lib we use in this project:
 ## 2.1 External webpack plugins:
+
 - `mini-css-extract-plugin` : extract / splited styles code into css file.
 - `clean-webpack-plugin` : clean dist folder before building new one.
 - `html-webpack-plugin` : simplifies creation of HTML files to serve your webpack bundles.
 - `webpack-bundle-analyzer` : analyzer visualy. If use change flat of mode to 'server' in `webpack.config.js`
 - `webpack-dev-server`: run application based on nodejs
+
 ## 2.2 internal webpack supported plugins:
 - `splitChunks` : chunks duplicate codes/libs into new files.
-# 3 Errors when webpack are running:
+# 3. Errors when webpack are running:
 
 ####3.1
 
