@@ -1,7 +1,7 @@
-import React from 'react';
-import HomePage from './pages/HomePage/HomePage';
+import React , { lazy } from 'react';
+// import HomePage from './pages/HomePage/HomePage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
-import ProductListPage from './pages/ProductListPage/ProductListPage';
+// import ProductListPage from './pages/ProductListPage/ProductListPage';
 import ProductActionPage from './pages/ProductActionPage/ProductActionPage';
 
 const routes = [
@@ -9,6 +9,11 @@ const routes = [
         path: '/',
         exact: true,
         main: () => <HomePage />
+    },
+    {
+        path: '/',
+        exact: true,
+        main: () => <HomePage2 />
     },
     {
         path: '/product-list',

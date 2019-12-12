@@ -4,7 +4,7 @@ import ProductItem from './../../components/ProductItem/ProductItem';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actFetchProductsRequest, actDeleteProductRequest } from './../../actions/index';
-import _ from 'lodash';
+// import _ from 'lodash';
 import { sum } from '../../utils/math'
 class ProductListPage extends Component {
 
@@ -34,11 +34,11 @@ class ProductListPage extends Component {
         var result = null;
         var length = products.length;
         
-        if (_.isNumber(length)){
-            console.log("Length is number");
-        }
+        // if (_.isNumber(length)){
+        //     console.log("Length is number");
+        // }
         
-        if (products.length > 0) {
+        if (length > 0) {
             result = products.map((product, index) => {
                 return (
                     <ProductItem
@@ -52,7 +52,6 @@ class ProductListPage extends Component {
         }
         return result;
     }
-
 }
 
 const mapStateToProps = state => {

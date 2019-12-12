@@ -47,6 +47,10 @@ Use: **TerserJSPlugin** : `terser-webpack-plugin`
     "presets": [
       "@babel/preset-env",
       "@babel/react"  
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-syntax-dynamic-import" // use for  dynamic imports webpack
     ]
 }
 
@@ -69,7 +73,7 @@ Use: **TerserJSPlugin** : `terser-webpack-plugin`
 - `splitChunks` : chunks duplicate codes/libs into new files.
 ## 3.3 Errors when webpack are running:
 
-####3.1
+####3.3.1
 
 ```
 Support for the experimental syntax 'classProperties' isn't currently enabled
@@ -78,7 +82,7 @@ Support for the experimental syntax 'classProperties' isn't currently enabled
 `npm install --save-dev @babel/plugin-proposal-class-properties`
 
 
-####3.2
+####3.3.2
 
 ```
 Uncaught ReferenceError: jQuery is not defined

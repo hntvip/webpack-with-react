@@ -24,7 +24,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     // filename: '[name].js', //[contenthash]: make hash random numbers
-    chunkFilename: '[name].chunk.js',
+    chunkFilename: 'js/[name].tu.js',
     publicPath: 'pathOrUrlWhenProductionBuild'
   },
   module: {
