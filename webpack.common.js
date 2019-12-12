@@ -2,7 +2,6 @@
 
 const path = require('path');
 const webpack = require('webpack');
-
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -24,7 +23,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js', //[contenthash]: make hash random numbers
+    // filename: '[name].js', //[contenthash]: make hash random numbers
+    chunkFilename: '[name].chunk.js',
     publicPath: 'pathOrUrlWhenProductionBuild'
   },
   module: {
@@ -69,7 +69,7 @@ module.exports = {
     }
   },
   plugins: [
-    new CleanWebpackPlugin(), // clean /dist first
+    new CleanWebpackPlugin(), // clean `/dist` first
     new HtmlWebpackPlugin({
       title: 'Production',
       template: './src/template.html'
@@ -79,8 +79,8 @@ module.exports = {
       jQuery: 'jquery'
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].css', //output
-      chunkFilename: '[id].css', //output
-    }),
+      filename: 'css/[name].css', //output
+      chunkFilename: 'css/vendor.[id].css' //output
+    })
   ]
 };
