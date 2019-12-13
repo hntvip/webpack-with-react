@@ -9,7 +9,27 @@ const menus = [
     },
     {
         name: 'Quản Lý Sản Phẩm',
+        to: '/product/add',
+        exact: false
+    },
+    {
+        name: 'Quản Lý Sản Phẩm',
         to: '/product-list',
+        exact: false
+    },
+    {
+        name: 'notfound',
+        to: '/notfound',
+        exact: false
+    },
+    {
+        name: 'homepage2',
+        to: '/homepage2',
+        exact: false
+    },
+    {
+        name: 'homepage3',
+        to: '/homepage3',
         exact: false
     }
 ];

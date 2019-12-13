@@ -4,8 +4,8 @@ import ProductItem from './../../components/ProductItem/ProductItem';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actFetchProductsRequest, actDeleteProductRequest } from './../../actions/index';
-// import _ from 'lodash';
-import { sum } from '../../utils/math'
+import isNumber from 'lodash/isNumber';
+import { sum, square } from '../../utils/math'
 class ProductListPage extends Component {
 
     componentDidMount() {
@@ -33,10 +33,9 @@ class ProductListPage extends Component {
     showProducts(products) {
         var result = null;
         var length = products.length;
+        var _sum = sum(1,2);
+        console.log('giatri la'+_sum)
         
-        // if (_.isNumber(length)){
-        //     console.log("Length is number");
-        // }
         
         if (length > 0) {
             result = products.map((product, index) => {

@@ -27,6 +27,8 @@ Search the error in CLI, browser to research in google will help you.
     
     npm install --save-dev @babel/core babel-loader @babel/preset-env @babel/preset-react css-loader style-loader file-loader mini-css-extract-plugin clean-webpack-plugin 
 
+    npm install @loadable/component //--> use for lazy loading 
+
 **3.3 install below step if you want to saparate/dive 2 modes `production` or `development`:** 
     
     npm install --save-dev webpack-merge
@@ -71,6 +73,7 @@ Use: **TerserJSPlugin** : `terser-webpack-plugin`
 
 ## 3.2 internal webpack supported plugins:
 - `splitChunks` : chunks duplicate codes/libs into new files.
+
 ## 3.3 Errors when webpack are running:
 
 ####3.3.1

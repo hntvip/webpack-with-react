@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@loadable/component": "^5.11.0",
     "axios": "^0.19.0",
     "bootstrap3": "^3.3.5",
     "font-awesome": "^4.7.0",
@@ -41,7 +42,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "dev": "npm run clean && webpack-dev-server --open --config webpack.dev.js",
-    "prod": "npm run clean && webpack --config webpack.prod.js",
+    "prod": "webpack --config webpack.prod.js",
     "json-server": "json-server db.json --port=3001",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

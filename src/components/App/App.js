@@ -3,11 +3,7 @@ import './App.css';
 import Menu from '../Menu/Menu';
 import routes from '../../routes';
 import { Switch, Route, HashRouter  as Router } from 'react-router-dom';
-const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
-const ProductListPage = lazy(() => import('../../pages/ProductListPage/ProductListPage'));
-const ProductActionPage = lazy(() => import('../../pages/ProductActionPage/ProductActionPage'));
-const NotFoundPage = lazy(() => import('../../pages/NotFoundPage/NotFoundPage'));
-const HomePage2 = lazy(() => import('../../pages/HomePage2/HomePage2'));
+
 class App extends Component {
     render() {
         return (
@@ -16,8 +12,8 @@ class App extends Component {
                     <Menu />
                     <div className="container">
                         <div className="row">
-                            {/* {this.showContentMenus(routes)} */}
-                            <Suspense fallback={<div>Loading...</div>}>
+                            {this.showContentMenus(routes)}
+                            {/* <Suspense fallback={<div>Loading...</div>}>
                                 <Switch>
                                     <Route
                                         path='/'
@@ -25,23 +21,15 @@ class App extends Component {
                                         component={HomePage}
                                     />
                                     <Route
-                                        path='/product-list'
-                                        component={ProductListPage}
-                                    />
-                                    <Route
-                                        path='/product/add'
-                                        component={ProductActionPage}
-                                    />
-                                    <Route
-                                        path='/notfound'
-                                        component={ NotFoundPage }
-                                    />
-                                    <Route
                                         path='/homepage2'
                                         component={ HomePage2 }
                                     />
+                                    <Route
+                                        path='/homepage3'
+                                        component={ HomePage3 }
+                                    />
                                 </Switch>
-                            </Suspense>
+                            </Suspense> */}
                         </div>
                     </div>
                 </div>
