@@ -1,51 +1,45 @@
-import React , { lazy } from 'react';
-// import HomePage from './pages/HomePage/HomePage';
-// import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
-// import ProductListPage from './pages/ProductListPage/ProductListPage';
-// import ProductActionPage from './pages/ProductActionPage/ProductActionPage';
+import React from 'react';
 import loadable from '@loadable/component';
+import Loading from './components/Loading/Loading';
 
-const HomePage = loadable(() => import('./pages/HomePage/HomePage'))
-const HomePage2 = loadable(() => import('./pages/HomePage2/HomePage2'))
-const HomePage3 = loadable(() => import('./pages/HomePage3/HomePage3'))
-const ProductListPage = loadable(() => import('./pages/ProductListPage/ProductListPage'))
-const ProductActionPage = loadable(() => import('./pages/ProductActionPage/ProductActionPage'))
-const NotFoundPage = loadable(() => import('./pages/NotFoundPage/NotFoundPage'))
+const AsyncPage = loadable(props => import(`./pages/${props.page}/${props.page}`),{
+    fallback: <Loading/>
+})
 const routes = [
     {
         path: '/',
         exact: true,
-        main: () => <HomePage />
+        main: () => <AsyncPage page="HomePage" />
     },
     {
         path: '/homepage2',
         exact: true,
-        main: () => <HomePage2 />
+        main: () => <AsyncPage page="HomePage2"/>
     },
     {
         path: '/homepage3',
         exact: true,
-        main: () => <HomePage3 />
+        main: () => <AsyncPage page="HomePage3"/>
     },
     {
         path: '/product-list',
         exact: false,
-        main: () => <ProductListPage />
+        main: () => <AsyncPage page="ProductListPage" />
     },
     {
         path: '/product/add',
         exact: false,
-        main: ({history}) => <ProductActionPage history={history}/>
+        main: ({history}) => <AsyncPage page="ProductActionPage" history={history}/>
     },
     {
         path: '/product/:id/edit',
         exact: false,
-        main: ({match, history}) => <ProductActionPage match={match} history={history}/>
+        main: ({match, history}) => <AsyncPage page="ProductActionPage" match={match} history={history}/>
     },
     {
         path: '',
         exact: false,
-        main: () => <NotFoundPage />
+        main: () => <AsyncPage page="NotFoundPage" />
     }
 ];
 

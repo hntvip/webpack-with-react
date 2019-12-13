@@ -23,8 +23,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    // filename: '[name].js', //[contenthash]: make hash random numbers
-    chunkFilename: '[name].js',
+    chunkFilename: '[name].tu.js', // this line is importaint for dynamitting import 
     publicPath: './'
   },
   module: {

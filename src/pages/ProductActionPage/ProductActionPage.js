@@ -16,6 +16,7 @@ class ProductActionPage extends Component {
     }
 
     componentDidMount() {
+        console.log( this.props.history)
         var { match } = this.props;
         if (match) {
             var id = match.params.id;

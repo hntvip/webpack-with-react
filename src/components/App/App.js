@@ -13,23 +13,6 @@ class App extends Component {
                     <div className="container">
                         <div className="row">
                             {this.showContentMenus(routes)}
-                            {/* <Suspense fallback={<div>Loading...</div>}>
-                                <Switch>
-                                    <Route
-                                        path='/'
-                                        exact
-                                        component={HomePage}
-                                    />
-                                    <Route
-                                        path='/homepage2'
-                                        component={ HomePage2 }
-                                    />
-                                    <Route
-                                        path='/homepage3'
-                                        component={ HomePage3 }
-                                    />
-                                </Switch>
-                            </Suspense> */}
                         </div>
                     </div>
                 </div>
